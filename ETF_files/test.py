@@ -28,6 +28,7 @@ if __name__ == '__main__':
             count += 1
 
     print("null hypo: ok: {0}, rejected: {1}".format(codes_num-count, count))
-    plt.plot(c_1_norm_list)
-    plt.plot([z_val for i in range(codes_num)])
+    plt.scatter(range(codes_num), c_1_norm_list, s=5, marker="*", label="c_1")
+    plt.plot([z_val for i in range(codes_num)], c="orange")
+    plt.legend(loc="lower right")
     plt.show()
