@@ -3,8 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from date_select import res as etf_date_list
 
-data_h = pd.read_csv("latent.csv", header=None)
-data_h_0 = pd.read_csv("latent_0.csv", header=None)
+data_h = pd.read_csv("../latent.csv", header=None)
+data_h_0 = pd.read_csv("../latent_0.csv", header=None)
 list_h_0 = list(map(float, data_h_0[1].tolist()))
 list_h, volit, returns, res = [], [], [], []
 

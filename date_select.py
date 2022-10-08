@@ -1,9 +1,9 @@
 import pandas as pd
 from ETF import date_list as etf_date_list
 
-data_0 = pd.read_csv("/AR_MODEL/FqReport_0.csv", header=None, skiprows=2)
-data_1 = pd.read_csv("/AR_MODEL/FqReport_1.csv", header=None, skiprows=2)
-data_2 = pd.read_csv("/AR_MODEL/FqReport1_nikkeiaverage.csv", header=None, skiprows=2)
+data_0 = pd.read_csv("../FqReport_0.csv", header=None, skiprows=2)
+data_1 = pd.read_csv("../FqReport_1.csv", header=None, skiprows=2)
+data_2 = pd.read_csv("../FqReport1_nikkeiaverage.csv", header=None, skiprows=2)
 date_list, res = [], []
 # print(data[0])
 for i in data_0[0].tolist():

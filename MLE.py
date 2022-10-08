@@ -1,5 +1,5 @@
 import numpy as np
-from Method_2 import list_h, list_h_0
+from ETF_files.Method_2 import list_h, list_h_0
 
 print(len(list_h[0]))
 for i, j in enumerate(list_h_0):

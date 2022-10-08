@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from date_select import res as etf_date_list
 
-data = pd.read_csv("/AR_MODEL/latent.csv", header=None)
-data_h_0 = pd.read_csv("/AR_MODEL/latent_0.csv", header=None)
+data = pd.read_csv("../latent.csv", header=None)
+data_h_0 = pd.read_csv("../latent_0.csv", header=None)
 # print(data_h_0[1][0])
 y_list = []
 data = data.drop(columns=0)

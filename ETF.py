@@ -1,7 +1,7 @@
 import pandas as pd
 
 temp, amount_list, date_list = [], [], []
-data = pd.read_csv("/AR_MODEL/ETF_files/ETF_auto.csv", header=None)
+data = pd.read_csv("../ETF_files/ETF_auto.csv", header=None)
 # print(data[0], data[1])
 for i in data[0].tolist():
     format_date = []
