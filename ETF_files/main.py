@@ -37,8 +37,8 @@ if __name__ == '__main__':
     # x = split_code(a)
     # plt.plot([c_1_ave+2*se for i in range(len(c_1_list))])
     # plt.plot([c_1_ave-2*se for i in range(len(c_1_list))])
-    plt.scatter(x, c_0_list, s=s, marker="D", c="orange", label="c_0")
-    plt.scatter(x, c_1_list, s=s, marker="*", label="c_1")
+    plt.scatter(x, c_0_list, s=s, marker="D", label="c_0")
+    plt.scatter(x, c_1_list, s=s, marker="*", c="orange", label="c_1")
     plt.scatter(x, phi_list, s=s, marker="^", c="green", label="phi")
     plt.legend(loc="lower right")
 
