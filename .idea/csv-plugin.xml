@@ -24,6 +24,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Equa\mle_res_v1_0.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Equa\mle_res_v1_1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Equa\mle_res_v1_2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Equa\mle_res_v2_0.csv">
           <value>
             <Attribute>

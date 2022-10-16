@@ -19,7 +19,7 @@ if __name__ == '__main__':
     print(c_1_norm_list)
     fl_ver2_name = "../Equa/res_1656814116.6972976.txt"
     fl_ver1_name = "../Equa/res_1656815125.673747.txt"
-    with open(fl_ver2_name, "rt") as fl:
+    with open(fl_ver1_name, "rt") as fl:
         mle_c1 = list(map(float, fl.read().split(",")))
         mle_c1_norm = normalize(mle_c1, 0, sigma)
         c_1_norm_list = mle_c1_norm
