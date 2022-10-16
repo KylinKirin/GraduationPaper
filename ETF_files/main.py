@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from AR_1 import c_1_list, c_0_list, phi_list
 import numpy as np
+import pandas as pd
 
 
 def split_code(string):
@@ -41,5 +42,8 @@ if __name__ == '__main__':
     plt.scatter(x, c_1_list, s=s, marker="*", c="orange", label="c_1")
     plt.scatter(x, phi_list, s=s, marker="^", c="green", label="phi")
     plt.legend(loc="lower right")
+    for i, c in enumerate([c_0_list, c_1_list, phi_list]):
+        with open("ols_res1_"+str(i)+".csv", "wt") as fl:
+            fl.write(pd.DataFrame(c).to_csv())
 
     plt.show()

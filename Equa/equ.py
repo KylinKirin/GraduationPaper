@@ -1,5 +1,5 @@
 import time
-
+import pandas as pd
 from scipy import optimize as opt
 # from scipy import integrate
 import numpy as np
@@ -16,31 +16,8 @@ def fuc1(x):
 def fuc2(x, y):
     return x**2+2*y**2
 
-#
-# def myequa(x_list):  # Ver.1
-#     global sigma_squ
-#     c_0, c_1, phi = x_list
-#     sum_0, sum_1, sum_2, sum_3 = 0, 0, 0, 0
-#     y_temp = y_list[count].to_list()
-#     y_0_temp = data_0[count]
-#     cap_t = len(y_temp) + 1
-#     for i, j in enumerate(y_temp):
-#         # print(i, j)
-#         if i > 0:
-#             temp = j-c_0-c_1*etf_vector[i-1]-phi*y_temp[i-1]
-#             sum_0 += temp**2
-#             sum_1 += temp
-#             sum_2 += etf_vector[i-1]*temp
-#             sum_3 += y_temp[i-1]*temp
-#     else:
-#         sigma_squre = (1 / cap_t) * ((1 - phi ** 2) * (y_0_temp-c_0/(1-phi))**2 + sum_0)
-#         # print(sigma_squre)
-#         sigma_squ[-1] = sigma_squre
-#     return [(1+phi)*(y_0_temp-c_0/(1-phi)) + sum_1,
-#             sum_2, -phi*sigma_squre/(1-phi**2) + c_0*((1-phi**2)/(1-phi)**2)*(y_0_temp-c_0/(1-phi)) + sum_3]
 
-
-def myequa(x_list):  # Ver.2
+def myequa(x_list):  # Ver.1
     global sigma_squ
     c_0, c_1, phi = x_list
     sum_0, sum_1, sum_2, sum_3 = 0, 0, 0, 0
@@ -50,18 +27,41 @@ def myequa(x_list):  # Ver.2
     for i, j in enumerate(y_temp):
         # print(i, j)
         if i > 0:
-            temp = j-c_0*(1-phi)-c_1*etf_vector[i-1]-phi*y_temp[i-1]
+            temp = j-c_0-c_1*etf_vector[i-1]-phi*y_temp[i-1]
             sum_0 += temp**2
-            sum_1 += temp*(1-phi)
+            sum_1 += temp
             sum_2 += etf_vector[i-1]*temp
-            sum_3 += (y_temp[i-1]-c_0)*temp
+            sum_3 += y_temp[i-1]*temp
     else:
-        sigma_squre = (1 / cap_t) * ((1 - phi ** 2) * (y_0_temp-c_0)**2 + sum_0)
+        sigma_squre = (1 / cap_t) * ((1 - phi ** 2) * (y_0_temp-c_0/(1-phi))**2 + sum_0)
         # print(sigma_squre)
         sigma_squ[-1] = sigma_squre
-    return [(1-phi**2)*(y_0_temp-c_0) + sum_1,
-            sum_2, -phi*sigma_squre/(1-phi**2) + phi*(y_0_temp-c_0)**2 + (1+phi)*c_1*(y_0_temp-c_0)/(1-phi) + sum_3]
+    return [(1+phi)*(y_0_temp-c_0/(1-phi)) + sum_1,
+            sum_2, -phi*sigma_squre/(1-phi**2) + c_0*((1-phi**2)/(1-phi)**2)*(y_0_temp-c_0/(1-phi)) + sum_3]
 
+
+# def myequa(x_list):  # Ver.2
+#     global sigma_squ
+#     c_0, c_1, phi = x_list
+#     sum_0, sum_1, sum_2, sum_3 = 0, 0, 0, 0
+#     y_temp = y_list[count].to_list()
+#     y_0_temp = data_0[count]
+#     cap_t = len(y_temp) + 1
+#     for i, j in enumerate(y_temp):
+#         # print(i, j)
+#         if i > 0:
+#             temp = j-c_0*(1-phi)-c_1*etf_vector[i-1]-phi*y_temp[i-1]
+#             sum_0 += temp**2
+#             sum_1 += temp*(1-phi)
+#             sum_2 += etf_vector[i-1]*temp
+#             sum_3 += (y_temp[i-1]-c_0)*temp
+#     else:
+#         sigma_squre = (1 / cap_t) * ((1 - phi ** 2) * (y_0_temp-c_0)**2 + sum_0)
+#         # print(sigma_squre)
+#         sigma_squ[-1] = sigma_squre
+#     return [(1-phi**2)*(y_0_temp-c_0) + sum_1,
+#             sum_2, -phi*sigma_squre/(1-phi**2) + phi*(y_0_temp-c_0)**2 + (1+phi)*c_1*(y_0_temp-c_0)/(1-phi) + sum_3]
+#
 
 def etf(arr1, n):
     box = []
@@ -143,6 +143,9 @@ if __name__ == '__main__':
     plt.scatter(range(1, code_num+1), res[0], s=s, marker="D", label="c_0")
     plt.scatter(range(1, code_num+1), res[1], s=s, marker="*", label="c_1")
     plt.scatter(range(1, code_num+1), res[2], s=s, marker="^", label="phi")
-    plt.legend()
+    plt.legend(loc="lower right")
+    for i, c in enumerate(res):
+        with open("mle_res_v1_"+str(i)+".csv", "wt") as fl:
+            fl.write(pd.DataFrame(c).to_csv())
 
     plt.show()
