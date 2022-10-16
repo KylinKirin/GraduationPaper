@@ -19,13 +19,17 @@ if __name__ == '__main__':
     diff_c_1 = np.array(c_1_list) - np.array(mle_c_1)
     diff_phi = np.array(phi_list) - np.array(mle_phi)
     # print(np.array(mle_phi))
+    diff_c_0 = np.abs(diff_c_0)
+    diff_c_1 = np.abs(diff_c_1)
+    diff_phi = np.abs(diff_phi)
     s = 2
     x_range = range(1, len(diff_phi)+1)
     print(len(mle_phi), len(phi_list), len(x_range), len(diff_phi))
-    plt.scatter(x_range, diff_c_0[0], s=s, marker="D")
-    plt.scatter(x_range, diff_c_1[0], s=s, marker="*", c="orange")
-    plt.scatter(x_range, diff_phi[0], s=s, marker="^", c="green")
+    plt.scatter(x_range, diff_c_0[0], s=s, marker="D", label="c_0")
+    plt.scatter(x_range, diff_c_1[0], s=s, marker="*", c="orange", label="c_1")
+    plt.scatter(x_range, diff_phi[0], s=s, marker="^", c="green", label="phi")
     print("C_0: ", np.sum(np.square(diff_c_0[0])), "C_1: ", np.sum(np.square(diff_c_1[0])),
           "PHI: ", np.sum(np.square(diff_phi[0])))
-
+    plt.legend(loc="upper right")
+    plt.title("Plot of the absolute difference between the estimates of OLS and MLE")
     plt.show()
